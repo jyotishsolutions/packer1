@@ -1,0 +1,16 @@
+---
+# provisioning apache and cloudwatchlogs on a new blank ubuntu ami
+- hosts: localhost 
+  sudo: yes                                            
+  
+  roles:
+  - { role: apache }
+
+  - role: cloudwatchlogs
+    logs:
+      - file: /var/log/syslog
+        format: "%b %d %H:%M:%S"
+        group_name: syslog
+      - file: /var/log/my_app_log
+        format: "%b %d %H:%M:%S"
+        group_name: my-app-log

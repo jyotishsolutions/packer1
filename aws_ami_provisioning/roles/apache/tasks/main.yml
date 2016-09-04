@@ -1,0 +1,11 @@
+---
+# tasks file for apache
+- name: Install apache
+  #apt: pkg=apache2 state=installed/present/absent update_cache=true
+  apt: pkg=apache2 state=present update_cache=true
+    
+- name: copy demo app  source
+  copy: src=index.html dest=/var/www/html/index.html mode=0755
+  notify: restart apache2
+
+

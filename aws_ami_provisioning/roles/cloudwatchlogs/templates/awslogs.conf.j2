@@ -1,0 +1,34 @@
+#
+# --- AGENT COMMANDS ---
+# To check or change the running status of the CloudWatch Logs Agent, use the following:
+#
+# To check running status: /etc/init.d/awslogs status
+# To stop the agent: /etc/init.d/awslogs stop
+# To start the agent: /etc/init.d/awslogs start
+#
+# --- AGENT LOG OUTPUT ---
+# You can find logs for the agent in /var/log/awslogs.log
+# You can find logs for the agent script in /var/log/awslogs-agent-setup.log
+#
+
+# ------------------------------------------
+# CONFIGURATION DETAILS
+# ------------------------------------------
+
+[general]
+# Path to the CloudWatch Logs agent's state file. The agent uses this file to maintain
+# client side state across its executions.
+state_file = /var/awslogs/state/agent-state
+
+## Name of the destination log stream. You may use {hostname} to use target machine's hostname.
+#log_stream_name = {instance_id} # Defaults to ec2 instance id
+#
+---------------------------------------------------------------------------------------------------------------------
+
+{% for log in logs %}
+[{{ log.file }}]
+datetime_format = {{ log.format }}
+file = {{ log.file }}
+log_group_name = {{ log.group_name }}
+log_stream_name = {instance_id}
+{% endfor %}
