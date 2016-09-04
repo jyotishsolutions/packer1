@@ -1,4 +1,4 @@
-#
+
 # --- AGENT COMMANDS ---
 # To check or change the running status of the CloudWatch Logs Agent, use the following:
 #
@@ -23,7 +23,9 @@ state_file = /var/awslogs/state/agent-state
 ## Name of the destination log stream. You may use {hostname} to use target machine's hostname.
 #log_stream_name = {instance_id} # Defaults to ec2 instance id
 #
----------------------------------------------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------------
+
+
 
 {% for log in logs %}
 [{{ log.file }}]
@@ -31,4 +33,5 @@ datetime_format = {{ log.format }}
 file = {{ log.file }}
 log_group_name = {{ log.group_name }}
 log_stream_name = {instance_id}
+initial_position = start_of_file
 {% endfor %}

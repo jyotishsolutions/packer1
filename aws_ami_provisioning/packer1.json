@@ -27,7 +27,7 @@
       "playbook_file": "./provisioning.yml", 
       "role_paths": [
                 "./roles/apache",
-				"./roles/cloudwatchlogs",
+		"./roles/cloudwatchlogs"
        ]
     }
   ]
