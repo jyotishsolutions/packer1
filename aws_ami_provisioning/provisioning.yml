@@ -8,9 +8,9 @@
 
   - role: cloudwatchlogs
     logs:
-      - file: /var/log/syslog
+      - file: /var/log/apache2/access.log
         format: "%b %d %H:%M:%S"
-        group_name: syslog
-      - file: /var/log/my_app_log
+        group_name: apache2-access
+      - file: /var/log/apache2/error.log
         format: "%b %d %H:%M:%S"
-        group_name: my-app-log
+        group_name: apache2-error
